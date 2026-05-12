@@ -5,7 +5,7 @@ export const Route = createFileRoute("/product/$id")({
     const {id}=params
     // console.log(id,typeof id)
     const res = await fetch(
-      `http://localhost:3000/api/products/${id}`
+      `https://fakebazar.netlify.app/api/products/${id}`
     );
 
     if (!res.ok) {
@@ -36,7 +36,7 @@ function ProductDetailsPage() {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/api/products/${product?.id}`,
+        `https://fakebazar.netlify.app/api/products/${product?.id}`,
         {
           method: "DELETE",
         }

@@ -21,7 +21,7 @@ function RouteComponent() {
     e.preventDefault()
 
     const res = await fetch(
-      `http://localhost:3000/api/products/`,
+      `https://fakebazar.netlify.app/api/products/`,
       {
         method: 'POST',
         body: JSON.stringify(formData),

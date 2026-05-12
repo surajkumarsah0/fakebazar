@@ -4,7 +4,7 @@ import { useState } from 'react'
 export const Route = createFileRoute('/product/edit/$id')({
   loader: async ({ params }) => {
     const {id}=params
-    const res = await fetch(`http://localhost:3000/api/products/${id}`)
+    const res = await fetch(`https://fakebazar.netlify.app/api/products/${id}`)
 
     if (!res.ok) {
       throw new Error('Failed to fetch product')
@@ -43,7 +43,7 @@ function RouteComponent() {
     e.preventDefault()
 
     const res = await fetch(
-      `http://localhost:3000/api/products/${product.id}`,
+      `https://fakebazar.netlify.app/api/products/${product.id}`,
       {
         method: 'PATCH',
         body: JSON.stringify(formData),

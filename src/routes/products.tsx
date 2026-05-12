@@ -3,7 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 export const Route = createFileRoute('/products')({
   component: RouteComponent,
   loader: async () => {
-    const res = await fetch('http://localhost:3000/api/products')
+    const res = await fetch('https://fakebazar.netlify.app/api/products')
     if (!res.ok) {
       return { products: null }
     }
