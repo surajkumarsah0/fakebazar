@@ -1,30 +1,38 @@
+import { getProductsUsingServerFunction } from '#/Serverfunction/test'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/products')({
   component: RouteComponent,
-  loader: async () => {
-    const res = await fetch('https://fakebazar.netlify.app/api/products')
-    if (!res.ok) {
-      return { products: null }
-    }
+  // loader: async () => {
+  //   const res = await fetch('https://fakebazar.netlify.app/api/products')
+  //   if (!res.ok) {
+  //     return { products: null }
+  //   }
 
-    const data = await res.json()
-    return {
-      products: data,
-    }
-  },
+  //   const data = await res.json()
+  //   return {
+  //     products: data,
+  //   }
+  // },
+  loader:async ()=>{
+   const {products}= await getProductsUsingServerFunction()
+  //  console.log(products)
+   return products
+  }
 })
 
 function RouteComponent() {
-  const { products } = Route.useLoaderData()
-  //   const {id}=Route.useParams()
+  const  products  = Route.useLoaderData()
+  // console.log(products)
+    // const {id}=Route.useParams()
+    // console.log("id=========",id,"type of id================",typeof id)
   if (!products) return <div>no products</div>
-  if (!products?.data?.length) return <div>no datas</div>
+  // if (!products?.data?.length) return <div>no datas</div>
 
   return (
     <div className="grid gap-4 p-6 grid-cols-3 ">
-      {products.data.splice(0,10).map((product) => {
-        const { id, title, description, price, category, image } = product ?? {}
+      {products.splice(0,10).map((product) => {
+        const { id,title, description, price, category, image } = product
         const pId=String(id)
         // console.log("id",pId,"type of id", typeof pId)
         return (

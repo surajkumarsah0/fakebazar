@@ -3,7 +3,7 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import { eq } from 'drizzle-orm';
 import { ProductTable } from '../db/schema';
   
-const db = drizzle(process.env.DATABASE_URL!);
+export const db = drizzle(process.env.DATABASE_URL!);
 
 
 interface IProducts{
